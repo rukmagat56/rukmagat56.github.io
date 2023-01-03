@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form>
+      <h3 class="login">Login Form</h3>
+      <label for="name">Name</label><br />
+      <input type="text" id="name" oninput=" validation()" /><br />
+
+      <label for="email">Email</label><br />
+      <input type="text" id="email" oninput=" validation()" /><br />
+
+      <label for="phone">Phone</label><br />
+      <input type="number" oninput=" validation()" id="phone" /><br />
+
+      <label for="website">Website</label><br />
+      <input type="text" oninput=" validation()" id="url" /><br />
+
+      <input
+        type="submit"
+        id="submit"
+        value="submit"
+        onclick=" return validation()"
+      />
+      <p id="result"></p>
+    </form>
+    <script>
+      let button = document.getElementById("submit");
+      button.disabled = true;
+
+      function validation() {
+        let mail = /^[a-zA-Z0–9+_.-]+@[a-zA-Z0–9.-]+$/;
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let pattern = /^(https?):\/\/[^\s$.?#].[^\s]*$/;
+        let url = document.getElementById("url").value;
+        let phone = document.getElementById("phone").value;
+
+        if (name == "" || email == "" || phone == "" || url == "") {
+          button.disabled = true;
+        } else if (phone.length < 10 || phone.length > 10) {
+          button.disabled = true;
+        } else if (!pattern.test(url) || !mail.test(email)) {
+          button.disabled = true;
+        } else {
+          button.disabled = false;
+        }
+      }
+    </script>
+  </body>
+</html>
